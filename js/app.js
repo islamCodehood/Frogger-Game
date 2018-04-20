@@ -50,6 +50,7 @@ var enemy6 = new Enemy();
 
 var allEnemies = [enemy1, enemy2, enemy3, enemy4, enemy5, enemy6];
 
+var player = new Player();
 
 
 // This listens for key presses and sends the keys to your
@@ -60,7 +61,7 @@ document.addEventListener('keyup', function(e) {
         38: 'up',
         39: 'right',
         40: 'down'
-    };
+    };  
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
