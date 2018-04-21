@@ -26,7 +26,6 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 var Player = function() {
-
     this.sprite = 'images/char-boy.png';
 };
 Player.prototype.update = function(dt) {
@@ -37,12 +36,20 @@ Player.prototype.update = function(dt) {
 
 // Draw the player on the screen, required method for game
 Player.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    ctx.drawImage(Resources.get(this.sprite), 202, 415);
 };
 
 // Handle key input for player
-Player.prototype.handleInput = function() {
-    
+Player.prototype.handleInput = function(movement) {
+    if (movement == 'left') {
+        ctx.drawImage(Resources.get(this.sprite), this.x - 101, this.y);
+    } else if (movement == 'right') {
+        ctx.drawImage(Resources.get(this.sprite), this.x + 101, this.y);
+    } else if (movement == 'up') {
+        ctx.drawImage(Resources.get(this.sprite), this.x, this.y - 83);
+    } else if (movement == 'down') {
+        ctx.drawImage(Resources.get(this.sprite), this.x + 101, this.y + 83);
+    }
 }
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
