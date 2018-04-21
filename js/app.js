@@ -7,7 +7,6 @@ var Enemy = function() {
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
     this.x = -100;
-    this.y = 63;
 };
 
 // Update the enemy's position, required method for game
@@ -28,12 +27,12 @@ Enemy.prototype.update = function(dt) {
     if (enemy3.x > 505) {
         enemy3.x = -100;
     }
-    console.log(enemy1.x, enemy3.x, enemy2.x);
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
+    enemy1.y = 63;
     enemy2.y = 145;
     enemy3.y = 228;
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
@@ -51,39 +50,37 @@ Player.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+    if (dt > 0){
+        this.x *= dt;
+        this.y *= dt;
+    };
+    
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
 // Draw the player on the screen, required method for game
 Player.prototype.render = function() {
-
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
 // Handle key input for player
 Player.prototype.handleInput = function(movement) {
-    if (movement == 'left') {
-        if (this.x > 0){
-            this.x -= 101;
+    if ((movement == 'left') && (this.x > 0)) {
+        this.x -= 101;
+    } else if ((movement == 'right') && (this.x < 404)) {
+        this.x += 101;
+    } else if ((movement == 'up') && ((this.y > 0))) {
+        this.y -= 83;
+        if (this.y == -10) {
+            setTimeout(function(){
+                player.x = 202;
+                player.y = 405;
+            }, 500);        
         }
-        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-        console.log('left');
-    } else if (movement == 'right') {
-        if (this.x < 404){
-            this.x += 101;
-        }
-        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-    } else if (movement == 'up') {
-        if (this.y > 0) {
-            this.y -= 83;
-        }
-        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-    } else if (movement == 'down') { 
-        if (this.y < 405) {
-            this.y += 83;
-        }
-        ctx.drawImage(Resources.get(this.sprite), this.x , this.y);
+    } else if ((movement == 'down') && ((this.y < 405))) { 
+        this.y += 83;
     }
+    ctx.drawImage(Resources.get(this.sprite), this.x , this.y);
 }
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
