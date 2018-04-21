@@ -6,6 +6,8 @@ var Enemy = function() {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
+    this.x = -100;
+    this.y = 65;
 };
 
 // Update the enemy's position, required method for game
@@ -14,11 +16,26 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    ctx.drawImage(Resources.get(this.sprite), this.x * dt, this.y * dt);
+    enemy1.x += 60 * dt;
+    if (enemy1.x > 505) {
+        enemy1.x = -100;
+    }
+    enemy2.x += 40 * dt;
+    if (enemy2.x > 505) {
+        enemy2.x = -100;
+    }
+    enemy3.x += 100 * dt;
+    if (enemy3.x > 505) {
+        enemy3.x = -100;
+    }
+    console.log(enemy1.x, enemy3.x, enemy2.x);
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
+    enemy2.y = 150;
+    enemy3.y = 240;
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
@@ -27,28 +44,45 @@ Enemy.prototype.render = function() {
 // a handleInput() method.
 var Player = function() {
     this.sprite = 'images/char-boy.png';
+    this.x = 202;
+    this.y = 415;
 };
 Player.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
 // Draw the player on the screen, required method for game
 Player.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), 202, 415);
+
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
 // Handle key input for player
 Player.prototype.handleInput = function(movement) {
     if (movement == 'left') {
-        ctx.drawImage(Resources.get(this.sprite), this.x - 101, this.y);
+        if (this.x > 0){
+            this.x -= 101;
+        }
+        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+        console.log('left');
     } else if (movement == 'right') {
-        ctx.drawImage(Resources.get(this.sprite), this.x + 101, this.y);
+        if (this.x < 404){
+            this.x += 101;
+        }
+        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     } else if (movement == 'up') {
-        ctx.drawImage(Resources.get(this.sprite), this.x, this.y - 83);
-    } else if (movement == 'down') {
-        ctx.drawImage(Resources.get(this.sprite), this.x + 101, this.y + 83);
+        if (this.y > 0) {
+            this.y -= 83;
+        }
+        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    } else if (movement == 'down') { 
+        if (this.y < 415) {
+            this.y += 83;
+        }
+        ctx.drawImage(Resources.get(this.sprite), this.x , this.y);
     }
 }
 // Now instantiate your objects.
@@ -57,11 +91,8 @@ Player.prototype.handleInput = function(movement) {
 var enemy1 = new Enemy();
 var enemy2 = new Enemy();
 var enemy3 = new Enemy();
-var enemy4 = new Enemy();
-var enemy5 = new Enemy();
-var enemy6 = new Enemy();
 
-var allEnemies = [enemy1, enemy2, enemy3, enemy4, enemy5, enemy6];
+var allEnemies = [enemy1, enemy2, enemy3];
 
 var player = new Player();
 
