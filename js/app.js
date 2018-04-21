@@ -45,7 +45,7 @@ Enemy.prototype.render = function() {
 var Player = function() {
     this.sprite = 'images/char-boy.png';
     this.x = 202;
-    this.y = 415;
+    this.y = 405;
 };
 Player.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
