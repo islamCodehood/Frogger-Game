@@ -7,7 +7,7 @@ var Enemy = function() {
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
     this.x = -100;
-    this.y = 65;
+    this.y = 63;
 };
 
 // Update the enemy's position, required method for game
@@ -24,7 +24,7 @@ Enemy.prototype.update = function(dt) {
     if (enemy2.x > 505) {
         enemy2.x = -100;
     }
-    enemy3.x += 100 * dt;
+    enemy3.x += 90 * dt;
     if (enemy3.x > 505) {
         enemy3.x = -100;
     }
@@ -34,8 +34,8 @@ Enemy.prototype.update = function(dt) {
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
-    enemy2.y = 150;
-    enemy3.y = 240;
+    enemy2.y = 145;
+    enemy3.y = 228;
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
@@ -79,7 +79,7 @@ Player.prototype.handleInput = function(movement) {
         }
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     } else if (movement == 'down') { 
-        if (this.y < 415) {
+        if (this.y < 405) {
             this.y += 83;
         }
         ctx.drawImage(Resources.get(this.sprite), this.x , this.y);
