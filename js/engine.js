@@ -22,6 +22,7 @@ var Engine = (function(global) {
         win = global.window,
         canvas = doc.createElement('canvas'),
         ctx = canvas.getContext('2d'),
+        audio = document.getElementById('game-audio'),
         lastTime;
 
     canvas.width = 505;
@@ -66,8 +67,11 @@ var Engine = (function(global) {
         reset();
         lastTime = Date.now();
         main();
+        playAudio();
     }
-
+    function playAudio() {
+        audio.play();
+    }
     /* This function is called by main (our game loop) and itself calls all
      * of the functions which may need to update entity's data. Based on how
      * you implement your collision detection (when two entities occupy the
