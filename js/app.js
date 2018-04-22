@@ -27,6 +27,10 @@ Enemy.prototype.update = function(dt) {
     if (enemy3.x > 505) {
         enemy3.x = -100;
     }
+    enemy4.x += 70 * dt;
+    if (enemy4.x > 505) {
+        enemy4.x = -100;
+    }
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     handleCollision();
 };
@@ -35,7 +39,8 @@ Enemy.prototype.update = function(dt) {
 Enemy.prototype.render = function() {
     enemy1.y = 62;
     enemy2.y = 145;
-    enemy3.y = 228;
+    enemy3.y = 145;
+    enemy4.y = 228;
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
@@ -99,8 +104,9 @@ Player.prototype.handleInput = function(movement) {
 var enemy1 = new Enemy();
 var enemy2 = new Enemy();
 var enemy3 = new Enemy();
+var enemy4 = new Enemy();
 
-var allEnemies = [enemy1, enemy2, enemy3];
+var allEnemies = [enemy1, enemy2, enemy3, enemy4];
 
 var player = new Player();
 
