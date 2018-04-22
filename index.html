@@ -3,18 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Effective JavaScript: Frogger</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <audio id="game-audio" loop>
-        <source src="audio/SuperMario.mp3" type="audio/mpeg">
-    </audio>
-    <audio id="life-lost">
-            <source src="audio/SuperMarioLifeLost.mp3" type="audio/mpeg">
-    </audio>
-    <audio id="win-audio">
-        <source src="audio/SuperMarioWin.mp3" type="audio/mpeg">
-    </audio>
+    <div class="container">
+            <audio id="game-audio" loop>
+                <source src="audio/SuperMario.mp3" type="audio/mpeg">
+            </audio>
+            <audio id="life-lost">
+                    <source src="audio/SuperMarioLifeLost.mp3" type="audio/mpeg">
+            </audio>
+            <audio id="win-audio">
+                <source src="audio/SuperMarioWin.mp3" type="audio/mpeg">
+            </audio>
+            <div class="controls">
+                <img src="images/icons8-no-audio-filled-50.png" alt="mute audio">
+            </div>
+            <div class="instructions">
+                <p></p>
+            </div>
+    </div> 
+    
     <script src="js/resources.js"></script>
     <script src="js/app.js"></script>
     <script src="js/engine.js"></script>
