@@ -1,3 +1,6 @@
+//Get lifeLost audio element
+const lifeLost = document.getElementById('life-lost');
+
 // Enemies our player must avoid
 var Enemy = function() {
     // Variables applied to each of our instances go here,
@@ -125,13 +128,22 @@ document.addEventListener('keyup', function(e) {
     player.handleInput(allowedKeys[e.keyCode]);
 });
 
+/*handleCollision function do the following:
+*check if the player and bug are on the same position.
+*If so 1. pause the game audio. 2. play lifeLost audio.
+*3. reset player position. 4. replay game audio after lifeLost audio finish.*/
 
 function handleCollision() {
     allEnemies.forEach(function(enemy) {
         setInterval(function() {
             if ((player.x - enemy.x < 70) && (player.x - enemy.x > - 15) && (player.y - enemy.y == 11)){
+                    audio.pause();
+                    lifeLost.play();
                     player.x = 202;
-                    player.y = 405;         
+                    player.y = 405;
+                    setTimeout(function() {
+                        audio.play(); 
+                    }, 3000);     
             }
         }, 0);
     });    
