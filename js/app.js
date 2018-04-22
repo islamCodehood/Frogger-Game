@@ -23,7 +23,7 @@ Enemy.prototype.update = function(dt) {
     if (enemy2.x > 505) {
         enemy2.x = -100;
     }
-    enemy3.x += 90 * dt;
+    enemy3.x += 60 * dt;
     if (enemy3.x > 505) {
         enemy3.x = -100;
     }
@@ -53,8 +53,7 @@ Player.prototype.update = function(dt) {
     if (dt > 0){
         this.x *= dt;
         this.y *= dt;
-    };
-    
+    }; 
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
@@ -67,10 +66,15 @@ Player.prototype.render = function() {
 Player.prototype.handleInput = function(movement) {
     if ((movement == 'left') && (this.x > 0)) {
         this.x -= 101;
+        console.log(this.x);
+
     } else if ((movement == 'right') && (this.x < 404)) {
         this.x += 101;
+        console.log(this.x);
+
     } else if ((movement == 'up') && ((this.y > 0))) {
         this.y -= 83;
+        console.log(this.x);
         if (this.y == -10) {
             setTimeout(function(){
                 player.x = 202;
@@ -79,9 +83,12 @@ Player.prototype.handleInput = function(movement) {
         }
     } else if ((movement == 'down') && ((this.y < 405))) { 
         this.y += 83;
+        console.log(this.x);
+
     }
     ctx.drawImage(Resources.get(this.sprite), this.x , this.y);
 }
+
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
@@ -92,6 +99,7 @@ var enemy3 = new Enemy();
 var allEnemies = [enemy1, enemy2, enemy3];
 
 var player = new Player();
+
 
 
 // This listens for key presses and sends the keys to your
@@ -106,3 +114,12 @@ document.addEventListener('keyup', function(e) {
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
+
+
+/*var handleCollision = function() {
+    if ((player.x - enemy3.x) < 90) {
+        console.log('oops');
+    }
+};
+handleCollision();*/
+
