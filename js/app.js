@@ -130,11 +130,8 @@ function handleCollision() {
     allEnemies.forEach(function(enemy) {
         setInterval(function() {
             if ((player.x - enemy.x < 70) && (player.x - enemy.x > - 15) && (player.y - enemy.y == 11)){
-                setTimeout(function() {
                     player.x = 202;
-                    player.y = 405;
-                }, 50);    
-                
+                    player.y = 405;         
             }
         }, 0);
     });    
