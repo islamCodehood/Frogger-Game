@@ -4,8 +4,74 @@ html {
 }
 
 body {
-    text-align: center;
     margin: 0;
     padding: 0;
     background: black;
+}
+
+.contianer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    
+}
+
+.controls {
+    width: 20%;
+    float: left;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.instructions {
+    width: 30%;
+    float: left;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+canvas {
+    float: left;
+    width: 40%;
+}
+
+.volumeControls {
+    width: 100%;
+    text-align: center;
+    margin: 50px 0;
+}
+
+
+
+.showIcon {
+    display: block;
+}
+
+.hideIcon {
+    display: none;
+}
+
+h1 {
+    color: rgb(0, 163, 192);
+    margin: 200px 0 0 50px;
+    font-size: 120px;
+    font-family: 'Acme', sans-serif;
+}
+
+span {
+    float: right;
+}
+
+p {
+    font-family: 'Acme', sans-serif;
+    color: rgb(0, 163, 192);
+    font-size: 32px;
+    margin: 80px 0 0;
 }
