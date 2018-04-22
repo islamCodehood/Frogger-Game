@@ -70,6 +70,7 @@ var Engine = (function(global) {
         playAudio();
     }
     function playAudio() {
+        audio.volume = 0.4;
         audio.play();
     }
     /* This function is called by main (our game loop) and itself calls all
