@@ -15,19 +15,20 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    enemy1.x += 60 * dt;
+    enemy1.x += 65 * dt;
     if (enemy1.x > 505) {
         enemy1.x = -100;
     }
-    enemy2.x += 40 * dt;
+    enemy2.x += 50 * dt;
     if (enemy2.x > 505) {
         enemy2.x = -100;
     }
-    enemy3.x += 60 * dt;
+    enemy3.x += 80 * dt;
     if (enemy3.x > 505) {
         enemy3.x = -100;
     }
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    handleCollision();
 };
 
 // Draw the enemy on the screen, required method for game
@@ -54,11 +55,14 @@ Player.prototype.update = function(dt) {
         this.x *= dt;
         this.y *= dt;
     }; 
+    handleCollision();
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+
 };
 
 // Draw the player on the screen, required method for game
 Player.prototype.render = function() {
+
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
@@ -116,10 +120,15 @@ document.addEventListener('keyup', function(e) {
 });
 
 
-/*var handleCollision = function() {
-    if ((player.x - enemy3.x) < 90) {
-        console.log('oops');
-    }
-};
-handleCollision();*/
+function handleCollision() {
+    setInterval(function() {
+        if ((player.x - enemy3.x < 79) && (player.x - enemy3.x > 75)){
+            player.x = 202;
+            player.y = 405;
+        }
+    }, 0);
+}
+
+
+
 
