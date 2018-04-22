@@ -12,7 +12,8 @@
  * This engine makes the canvas' context (ctx) object globally available to make 
  * writing app.js a little simpler to work with.
  */
-
+//Get Game audio element
+const audio = document.getElementById('game-audio');
 var Engine = (function(global) {
     /* Predefine the variables we'll be using within this scope,
      * create the canvas element, grab the 2D context for that canvas
@@ -22,7 +23,7 @@ var Engine = (function(global) {
         win = global.window,
         canvas = doc.createElement('canvas'),
         ctx = canvas.getContext('2d'),
-        audio = document.getElementById('game-audio'),
+        
         lastTime;
 
     canvas.width = 505;
