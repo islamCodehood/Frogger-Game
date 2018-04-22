@@ -33,7 +33,7 @@ Enemy.prototype.update = function(dt) {
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
-    enemy1.y = 63;
+    enemy1.y = 62;
     enemy2.y = 145;
     enemy3.y = 228;
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
@@ -70,24 +70,24 @@ Player.prototype.render = function() {
 Player.prototype.handleInput = function(movement) {
     if ((movement == 'left') && (this.x > 0)) {
         this.x -= 101;
-        console.log(this.x);
+        console.log(this.y);
 
     } else if ((movement == 'right') && (this.x < 404)) {
         this.x += 101;
-        console.log(this.x);
+        console.log(this.y);
 
     } else if ((movement == 'up') && ((this.y > 0))) {
         this.y -= 83;
-        console.log(this.x);
+        console.log(this.y);
         if (this.y == -10) {
             setTimeout(function(){
                 player.x = 202;
                 player.y = 405;
-            }, 500);        
+            }, 300);        
         }
     } else if ((movement == 'down') && ((this.y < 405))) { 
         this.y += 83;
-        console.log(this.x);
+        console.log(this.y);
 
     }
     ctx.drawImage(Resources.get(this.sprite), this.x , this.y);
@@ -121,12 +121,17 @@ document.addEventListener('keyup', function(e) {
 
 
 function handleCollision() {
-    setInterval(function() {
-        if ((player.x - enemy3.x < 79) && (player.x - enemy3.x > 75)){
-            player.x = 202;
-            player.y = 405;
-        }
-    }, 0);
+    allEnemies.forEach(function(enemy) {
+        setInterval(function() {
+            if ((player.x - enemy.x < 70) && (player.x - enemy.x > - 15) && (player.y - enemy.y == 11)){
+                setTimeout(function() {
+                    player.x = 202;
+                    player.y = 405;
+                }, 100);    
+                
+            }
+        }, 0);
+    });    
 }
 
 
