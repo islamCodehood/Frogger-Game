@@ -133,7 +133,7 @@ function handleCollision() {
                 setTimeout(function() {
                     player.x = 202;
                     player.y = 405;
-                }, 100);    
+                }, 50);    
                 
             }
         }, 0);
