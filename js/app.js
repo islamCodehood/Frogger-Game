@@ -2,8 +2,12 @@
 const lifeLost = document.getElementById('life-lost');
 //Get win audio element
 const winAudio = document.getElementById('win-audio');
+//Get mute icon
+const controlAudioElement = document.querySelector('.controlAudioElement');
+//determine the status of control Audio
+let status = 1;
 // Enemies our player must avoid
-var Enemy = function(x, y) {
+const Enemy = function(x, y) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
@@ -38,7 +42,7 @@ Enemy.prototype.render = function() {
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
-var Player = function(x, y) {
+const Player = function(x, y) {
     this.sprite = 'images/char-boy.png';
     //x, and y coordinates for player
     this.x = x;
@@ -93,14 +97,14 @@ Player.prototype.handleInput = function(movement) {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-var enemy1 = new Enemy(-50, 62);
-var enemy2 = new Enemy(0, 145);
-var enemy3 = new Enemy(-200, 145);
-var enemy4 = new Enemy(-100, 228);
+const enemy1 = new Enemy(-50, 62);
+const enemy2 = new Enemy(0, 145);
+const enemy3 = new Enemy(-200, 145);
+const enemy4 = new Enemy(-100, 228);
 
-var allEnemies = [enemy1, enemy2, enemy3, enemy4];
+const allEnemies = [enemy1, enemy2, enemy3, enemy4];
 
-var player = new Player(202, 405);
+const player = new Player(202, 405);
 
 
 
@@ -109,7 +113,7 @@ var player = new Player(202, 405);
 document.addEventListener('keyup', keyUpHandle);
 
 function keyUpHandle(e) {
-    var allowedKeys = {
+    const allowedKeys = {
         37: 'left',
         38: 'up',
         39: 'right',
@@ -146,10 +150,31 @@ function handleCollision() {
     });    
 }
 
-//control audio (on/off)
-/*function controlAudio() {
-    if ()
-}*/
+//control audio function (on/off)
+function controlAudio() {
+    const muteSrc = 'images/icons8-no-audio-40.png';
+    const unmuteSrc = 'images/icons8-audio-40.png';
+    if (status == 1){
+        audio.volume = 0;
+        winAudio.volume = 0;
+        lifeLost.volume = 0;
+        controlAudioElement.src = unmuteSrc;
+        status = 0;
+    } else {
+        audio.volume = 0.4;
+        winAudio.volume = 1;
+        lifeLost.volume = 1;
+        controlAudioElement.src = muteSrc;
+        status = 1;
+    }
+        
+    }  
+
+
+controlAudioElement.addEventListener('click', controlAudio);
+
+
+
 
 
 
