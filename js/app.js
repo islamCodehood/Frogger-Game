@@ -169,27 +169,37 @@ function handleCollision() {
     });    
 }
 
-//control audio function (on/off)
-function controlAudio() {
-    
-    if (status == 1){
-        audio.volume = 0;
-        winAudio.volume = 0;
-        lifeLost.volume = 0;
-        controlAudioElement.src = unmuteSrc;
-        status = 0;
-    } else {
-        audio.volume = 0.4;
-        winAudio.volume = 1;
-        lifeLost.volume = 1;
-        controlAudioElement.src = muteSrc;
-        status = 1;
-    }
-        
-    }  
 
-//Click Event listener to control audio
-controlAudioElement.addEventListener('click', controlAudio);
+//choose player character and control audio (on/off) by clicking
+document.querySelector('.controls').addEventListener('click', controls);
+
+function controls(e) {
+    if (e.target && e.target.matches('img.boy')) {
+        player.sprite = 'images/char-boy.png';
+    } else if (e.target && e.target.matches('img.cat-girl')) {
+        player.sprite = 'images/char-cat-girl.png';
+    } else if (e.target && e.target.matches('img.horn-girl')) {
+        player.sprite = 'images/char-horn-girl.png';
+    } else if (e.target && e.target.matches('img.princess-girl')) {
+        player.sprite = 'images/char-princess-girl.png';
+    } else if (e.target && e.target.matches('img.controlAudioElement')) {
+        if (status == 1){
+            audio.volume = 0;
+            winAudio.volume = 0;
+            lifeLost.volume = 0;
+            controlAudioElement.src = unmuteSrc;
+            status = 0;
+        } else {
+            audio.volume = 0.4;
+            winAudio.volume = 1;
+            lifeLost.volume = 1;
+            controlAudioElement.src = muteSrc;
+            status = 1;
+        } 
+    }
+}
+   
+
 
 
 
