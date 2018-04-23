@@ -99,6 +99,9 @@ var Engine = (function(global) {
             enemy.update(dt);
         });
         player.update();
+        allHearts.forEach(function(heart) {
+            heart.update();
+        });
     }
 
     /* This function initially draws the "game level", it will then call
@@ -157,8 +160,10 @@ var Engine = (function(global) {
         allEnemies.forEach(function(enemy) {
             enemy.render();
         });
-
         player.render();
+        allHearts.forEach(function(heart) {
+            heart.render();
+        });
     }
 
     /* This function does nothing but it could have been a good place to
