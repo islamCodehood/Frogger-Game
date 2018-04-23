@@ -96,14 +96,16 @@ Player.prototype.handleInput = function(movement) {
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
-// Place the player object in a variable called player
+
 const enemy1 = new Enemy(-50, 62);
 const enemy2 = new Enemy(0, 145);
 const enemy3 = new Enemy(-200, 145);
 const enemy4 = new Enemy(-100, 228);
 
+//array of all enemy objects
 const allEnemies = [enemy1, enemy2, enemy3, enemy4];
 
+// Place the player object in a variable called player
 const player = new Player(202, 405);
 
 
@@ -117,7 +119,8 @@ function keyUpHandle(e) {
         37: 'left',
         38: 'up',
         39: 'right',
-        40: 'down'
+        40: 'down',
+        117: 'f6'
     };  
 
     player.handleInput(allowedKeys[e.keyCode]);
@@ -170,8 +173,10 @@ function controlAudio() {
         
     }  
 
-
+//Click Event listener to control audio
 controlAudioElement.addEventListener('click', controlAudio);
+
+
 
 
 
