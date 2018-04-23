@@ -6,6 +6,8 @@ const winAudio = document.getElementById('win-audio');
 const controlAudioElement = document.querySelector('.controlAudioElement');
 //determine the status of control Audio
 let status = 1;
+const muteSrc = 'images/icons8-no-audio-40.png';
+const unmuteSrc = 'images/icons8-audio-40.png';
 // Enemies our player must avoid
 const Enemy = function(x, y) {
     // Variables applied to each of our instances go here,
@@ -90,6 +92,20 @@ Player.prototype.handleInput = function(movement) {
         }
     } else if ((movement == 'down') && ((this.y < 405))) { 
         this.y += 83;
+    } else if (movement == 'escape') {
+        if (status == 1){
+            audio.volume = 0;
+            winAudio.volume = 0;
+            lifeLost.volume = 0;
+            controlAudioElement.src = unmuteSrc;
+            status = 0;
+        } else {
+            audio.volume = 0.4;
+            winAudio.volume = 1;
+            lifeLost.volume = 1;
+            controlAudioElement.src = muteSrc;
+            status = 1;
+        }
     }
     ctx.drawImage(Resources.get(this.sprite), this.x , this.y);
 }
@@ -120,7 +136,7 @@ function keyUpHandle(e) {
         38: 'up',
         39: 'right',
         40: 'down',
-        117: 'f6'
+        27: 'escape'
     };  
 
     player.handleInput(allowedKeys[e.keyCode]);
@@ -155,8 +171,7 @@ function handleCollision() {
 
 //control audio function (on/off)
 function controlAudio() {
-    const muteSrc = 'images/icons8-no-audio-40.png';
-    const unmuteSrc = 'images/icons8-audio-40.png';
+    
     if (status == 1){
         audio.volume = 0;
         winAudio.volume = 0;
