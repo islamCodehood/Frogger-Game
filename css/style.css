@@ -6,6 +6,7 @@ html {
 body {
     margin: 0;
     padding: 0;
+    overflow: hidden;
     background: black;
 }
 
@@ -14,8 +15,7 @@ body {
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
-    
+    width: 100%;    
 }
 
 .controls {
@@ -40,6 +40,7 @@ body {
 canvas {
     float: left;
     width: 40%;
+    margin-top: -1em;
 }
 
 .volumeControls {
@@ -74,4 +75,59 @@ p {
     color: rgb(0, 163, 192);
     font-size: 32px;
     margin: 80px 0 0;
+}
+
+img:focus {
+    background: radial-gradient(rgb(0, 173, 204), rgb(0, 0, 0));
+    outline: none;
+}
+
+.gameOver {
+    width: 100vw;
+    height: 100vh;
+    background: black;
+    color: rgb(0, 163, 192);
+    font-size: 8em;
+    text-align: center;
+    position: absolute;
+    left: -100vw;
+    animation: drawer;
+    animation-duration: 4s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+}
+
+.bugImage {
+    margin: auto;
+    transform: scale(1.8);
+    animation: bugMove;
+    animation-duration: 8s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+    position: absolute;
+    left: 30%;
+}
+
+.gameOverText {
+    position: absolute;
+    left: 30%;
+    top: 40%;
+    font-size: 60px;
+    visibility: hidden;
+    animation: text;
+    animation-delay: 1.8s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+}
+
+@keyframes drawer {
+    100% {left: 0;}
+}
+
+@keyframes bugMove {
+    100% {left: 120%;}
+}
+
+@keyframes text {
+    100% {visibility: visible;}
 }
