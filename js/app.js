@@ -8,6 +8,7 @@ const controlAudioElement = document.querySelector('.controlAudioElement');
 let status = 1;
 const muteSrc = 'images/icons8-no-audio-40.png';
 const unmuteSrc = 'images/icons8-audio-40.png';
+var lives = 3;
 // Enemies our player must avoid
 const Enemy = function(x, y) {
     // Variables applied to each of our instances go here,
@@ -110,6 +111,39 @@ Player.prototype.handleInput = function(movement) {
     ctx.drawImage(Resources.get(this.sprite), this.x , this.y);
 }
 
+//Heart class caculates lives available
+const Heart = function(x, y){
+    this.sprite = 'images/Heart.png';
+    this.x = x;
+    this.y = y;
+};
+//update method clear a heart with each decreased life
+Heart.prototype.update = function() {
+    if (lives == 3){
+        heart1.x = 0;
+        heart2.x = 60;
+        heart3.x = 120;
+    } else if (lives == 2) {
+        heart3.x = -500;
+    } else if (lives == 1) {
+        heart2.x = -500;
+    } else if (lives == 0) {
+        heart1.x = -500;
+    }
+    
+};
+//render method to draw hearts
+Heart.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y, 60, 101);
+};
+  
+
+const Gem = function(x, y) {
+    this.sprite = ''
+}
+
+
+
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 
@@ -124,7 +158,11 @@ const allEnemies = [enemy1, enemy2, enemy3, enemy4];
 // Place the player object in a variable called player
 const player = new Player(202, 405);
 
+const heart1 = new Heart(0, 510);
+const heart2 = new Heart(60, 510);
+const heart3 = new Heart(120, 510);
 
+const allHearts = [heart1, heart2, heart3];
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
@@ -152,15 +190,27 @@ function handleCollision() {
             if ((player.x - enemy.x < 70) && (player.x - enemy.x > - 15) && (player.y - enemy.y == 11)){
                     //pause game audio and play life lost audio
                     audio.pause();
+                    lives -= 1;
+                    console.log(lives);
+                    if (lives == 0) {
+                        document.querySelector('.gameOver').classList.remove('gameOverAnimateBack');
+                        document.querySelector('.bugImage').classList.remove('bugImageHide');
+                        document.querySelector('.gameOver').classList.add('gameOverAnimate');
+                        document.querySelector('.bugImage').classList.add('bugImageAnimate');
+                        document.querySelector('.gameOverText').classList.add('gameOverTextAnimate');
+                    }
                     lifeLost.play();
                     //return player to starting position
                     player.x = 202;
                     player.y = 405; 
                     //pause event listener to prevent any action before restart the game
                     document.removeEventListener('keyup', keyUpHandle);
+                    
                     setTimeout(function() {
                         //replay game audio
                         audio.play(); 
+                        console.log(lives);
+                        console.log(lives)
                         //return event listener
                         document.addEventListener('keyup', keyUpHandle);
                     }, 2000);  
@@ -198,7 +248,38 @@ function controls(e) {
         } 
     }
 }
-   
+//Use keyboard tab to focus characters and enter or space buttons to choose one
+document.querySelector('.controls').addEventListener('keyup', focusAndChoose);
+
+function focusAndChoose(e) {
+    if (e.keyCode == 13 || e.keyCode == 32  ) {
+        console.log(e.keyCode);
+        console.log(document.activeElement.src);
+        player.sprite = document.activeElement.getAttribute('src');
+    }
+}
+
+document.querySelector('.gameOverText').addEventListener('click', startNewGame)
+
+function startNewGame() {
+    document.querySelector('.gameOver').classList.add('gameOverAnimateBack');
+    document.querySelector('.bugImage').classList.add('bugImageHide');
+    document.querySelector('.gameOverText').classList.remove('gameOverTextAnimate');
+    lives = 3;
+}
+// Shuffle function from http://stackoverflow.com/a/2450976
+function shuffle(array) {
+    var currentIndex = array.length,
+        temporaryValue, randomIndex;
+    while (currentIndex !== 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
+    return array;
+}
 
 
 
