@@ -70,7 +70,7 @@ canvas:hover {
 }
 
 h1 {
-    color: rgb(0, 163, 192);
+    color: #516CD4;
     margin: 200px 0 0 50px;
     font-size: 120px;
 }
@@ -80,7 +80,7 @@ span {
 }
 
 p {
-    color: rgb(0, 163, 192);
+    color: #516CD4;
     font-size: 36px;
     margin: 80px 0 0;
     display: block;
@@ -94,28 +94,30 @@ img:focus {
 .gameOver {
     width: 100vw;
     height: 100vh;
-    background: black;
-    color: rgb(0, 163, 192);
+    background: radial-gradient(rgb(0, 173, 204), rgb(0, 0, 0));
+    color: black;
     font-size: 8em;
     text-align: center;
     position: absolute;
     left: -100vw;
-    animation: drawer-back;
-    animation-duration: 4s;
-    animation-timing-function: ease-in-out;
-    animation-fill-mode: both;
 }
 .gameOverAnimate {
     animation: drawer;
-    animation-duration: 4s;
+    animation-duration: 2.5s;
     animation-timing-function: ease-in-out;
     animation-fill-mode: both;
+}
+
+.gameOverHeading {
+    position: absolute;
+    top: 10%;
+    left: 40%;
 }
 
 .gameOverAnimateBack {
     left: 0;
     animation: drawer-back;
-    animation-duration: 4s;
+    animation-duration: 2.5s;
     animation-timing-function: ease-in-out;
     animation-fill-mode: both;
 }
@@ -129,8 +131,8 @@ img:focus {
 
 .bugImageAnimate {
     animation: bugMove;
-    animation-delay: 3s;
-    animation-duration: 8s;
+    animation-delay: 1.8s;
+    animation-duration: 5s;
     animation-timing-function: ease-in-out;
     animation-fill-mode: forwards;
 }
@@ -144,7 +146,6 @@ img:focus {
     left: 30%;
     top: 40%;
     font-size: 60px;
-    visibility: hidden;
     cursor: pointer;
 }
 
@@ -154,9 +155,10 @@ img:focus {
 
 .gameOverTextAnimate {
     animation: text;
-    animation-delay: 4.8s;
+    animation-delay: 2.7s;
     animation-timing-function: ease-in-out;
     animation-fill-mode: forwards;
+    visibility: hidden;
 }
 
 .controlAudioElement {
@@ -168,10 +170,13 @@ img:focus {
     font-size: 30px;
     font-family: Arial, Helvetica, sans-serif;
     color: white;
-    border: 2px solid yellow;
+    border: 2px solid #516CD4;
+    border-radius: 5px;
     width: 80px;
     height: 40px;
     float: left;
+    text-align: center;
+    padding-top: 10px;
 }
 
 

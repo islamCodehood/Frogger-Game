@@ -8,8 +8,10 @@ const controlAudioElement = document.querySelector('.controlAudioElement');
 let status = 1;
 const muteSrc = 'images/icons8-no-audio-40.png';
 const unmuteSrc = 'images/icons8-audio-40.png';
-var lives = 3;
-var gemNumber = 0;
+let lives = 3;
+let gemNumber = 0;
+//variable holds score value
+let score = 0;
 // Enemies our player must avoid
 const Enemy = function(x, y) {
     // Variables applied to each of our instances go here,
@@ -80,6 +82,9 @@ Player.prototype.handleInput = function(movement) {
             //pause game audio and play win audio
             audio.pause();
             winAudio.play();
+            //increase score
+            score += 5;
+            document.querySelector('.score').innerHTML = score;
             //pause event listener to prevent any action before restart the game
             document.removeEventListener('keyup', keyUpHandle);
             setTimeout(function(){
@@ -160,6 +165,9 @@ function gemWin() {
     if ((gem.x - player.x == 19) && (gem.y - player.y == 32 || gem.y - player.y == 41)) {
         gem.x = -500;
         gem.y = -500;
+        //increase score
+        score += 5;
+        document.querySelector('.score').innerHTML = score;
         if (gemNumber < 15) {
             gemNumber += 1;
             gem.x = gemPositions[gemNumber].x;
@@ -219,7 +227,7 @@ function keyUpHandle(e) {
 
 function handleCollision() {
     allEnemies.forEach(function(enemy) {
-        setInterval(function() {
+
             if ((player.x - enemy.x < 70) && (player.x - enemy.x > - 15) && (player.y - enemy.y == 11)){
                     //pause game audio and play life lost audio
                     audio.pause();
@@ -245,7 +253,7 @@ function handleCollision() {
                         document.addEventListener('keyup', keyUpHandle);
                     }, 2000);  
             }
-        }, 0);
+
     });    
 }
 
@@ -293,7 +301,11 @@ function startNewGame() {
     document.querySelector('.gameOver').classList.add('gameOverAnimateBack');
     document.querySelector('.bugImage').classList.add('bugImageHide');
     document.querySelector('.gameOverText').classList.remove('gameOverTextAnimate');
+    //reset lives number
     lives = 3;
+    //reset score
+    score = 0;
+    document.querySelector('.score').innerHTML = score;
 }
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
