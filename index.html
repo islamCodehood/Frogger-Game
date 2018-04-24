@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <title>Frogger Game</title>
@@ -9,6 +10,7 @@
     <link rel="shortcut icon" type="image/png" href="images/favicon.png">
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
     <div class="gameOver">
         <span class="gameOverHeading">Game Over</span>
@@ -18,34 +20,35 @@
     </div>
     <div class="container">
         <!--Audio files from https://archive.org/details/SuperMarioBrosNESMusicHurriedOverworld -->
-            <audio id="game-audio" loop>
-                <source src="audio/SuperMario.mp3" type="audio/mpeg">
-            </audio>
-            <audio id="life-lost">
-                    <source src="audio/SuperMarioLifeLost.mp3" type="audio/mpeg">
-            </audio>
-            <audio id="win-audio">
-                <source src="audio/SuperMarioWin.mp3" type="audio/mpeg">
-            </audio>
-            <div class="controls">
-                <p>Choose Player</p>
-                <img src="images/char-boy.png" class="boy" tabindex="0" alt="">
-                <img src="images/char-cat-girl.png" class="cat-girl" tabindex="0" alt="">
-                <img src="images/char-horn-girl.png" class="horn-girl" tabindex="0" alt="">
-                <img src="images/char-princess-girl.png" class="princess-girl" tabindex="0" alt="">
-                <div class="volumeControls">
-                    <img src="images/icons8-no-audio-40.png" class="controlAudioElement" alt="audio control" title="shortcut: escape">
-                    <div class="score">0</div>
-                </div>
+        <audio id="game-audio" loop>
+            <source src="audio/SuperMario.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="life-lost">
+            <source src="audio/SuperMarioLifeLost.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="win-audio">
+            <source src="audio/SuperMarioWin.mp3" type="audio/mpeg">
+        </audio>
+        <div class="controls">
+            <p>Choose Player</p>
+            <img src="images/char-boy.png" class="boy" tabindex="0" alt="">
+            <img src="images/char-cat-girl.png" class="cat-girl" tabindex="0" alt="">
+            <img src="images/char-horn-girl.png" class="horn-girl" tabindex="0" alt="">
+            <img src="images/char-princess-girl.png" class="princess-girl" tabindex="0" alt="">
+            <div class="volumeControls">
+                <img src="images/icons8-no-audio-40.png" class="controlAudioElement" alt="audio control" title="shortcut: escape">
+                <div class="score">0</div>
             </div>
-            <div class="instructions">
-                <h1>Frogger <span>Game</span></h1>
-            </div>
-    </div> 
-    
+        </div>
+        <div class="instructions">
+            <h1>Frogger <span>Game</span></h1>
+        </div>
+    </div>
+
     <script src="js/resources.js"></script>
     <script src="js/app.js"></script>
     <script src="js/engine.js"></script>
 
 </body>
+
 </html>
