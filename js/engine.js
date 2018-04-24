@@ -68,6 +68,7 @@ var Engine = (function(global) {
         lastTime = Date.now();
         main();
         playAudio();
+        document.querySelector('.boy').focus();
     }
     function playAudio() {
         audio.volume = 0.4;
