@@ -192,9 +192,11 @@ function gemWin() {
     if ((gem.x - player.x == 19) && (gem.y - player.y == 32 || gem.y - player.y == 41)) {
         //remove the gem outside canvas
         gem.x = -500;
-        //increase score
+        //increase score by earning a gem
         score += 5;
+        //represent new score
         document.querySelector('.score').innerHTML = score;
+        //not to exceed number of objects (places) to move gems using the array gemPositions which is shuffled each page reload.
         if (gemNumber < 15) {
             gemNumber += 1;
             gem.x = gemPositions[gemNumber].x;
@@ -269,13 +271,18 @@ const allEnemies = [enemy1, enemy2, enemy3, enemy4];
 // Place the player object in a variable called player
 const player = new Player(202, 405);
 
+//instantiate heart objects
 const heart1 = new Heart(0, 510);
 const heart2 = new Heart(60, 510);
 const heart3 = new Heart(120, 510);
 
+//array of all three hearts
 const allHearts = [heart1, heart2, heart3];
+
 //invoke shuffle function to randomly change gem positions
 shuffle(gemPositions);
+
+//instantiate gem object using x, and y coordinate from the shuffled gemPositions array
 const gem = new Gem(gemPositions[gemNumber].x, gemPositions[gemNumber].y);
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
@@ -334,6 +341,7 @@ function handleCollision() {
 document.querySelector('.controls').addEventListener('click', controls);
 
 function controls(e) {
+    //choose character at any time during the game
     if (e.target && e.target.matches('img.boy')) {
         player.sprite = 'images/char-boy.png';
     } else if (e.target && e.target.matches('img.cat-girl')) {
@@ -342,6 +350,7 @@ function controls(e) {
         player.sprite = 'images/char-horn-girl.png';
     } else if (e.target && e.target.matches('img.princess-girl')) {
         player.sprite = 'images/char-princess-girl.png';
+        //mute or replay audio
     } else if (e.target && e.target.matches('img.controlAudioElement')) {
         if (status == 1) {
             audio.volume = 0;
@@ -361,12 +370,15 @@ function controls(e) {
 //Use keyboard tab to focus characters and enter or space buttons to choose one
 document.querySelector('.controls').addEventListener('keyup', focusAndChoose);
 
+//handle enter or space button input
 function focusAndChoose(e) {
     if (e.keyCode == 13 || e.keyCode == 32) {
+        //change character by assigning src attribute value of the focused character (activeElement) to 'player.sprite'
         player.sprite = document.activeElement.getAttribute('src');
     }
 }
 
+//Event listener to handle clicking 'play again' to start new game
 document.querySelector('.gameOverText').addEventListener('click', startNewGame)
 
 function startNewGame() {
@@ -377,6 +389,7 @@ function startNewGame() {
     lives = 3;
     //reset score
     score = 0;
+    //represent the new score
     document.querySelector('.score').innerHTML = score;
 }
 // Shuffle function from http://stackoverflow.com/a/2450976
