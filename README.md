@@ -1,6 +1,28 @@
-frontend-nanodegree-arcade-game
-===============================
+# Frogger Game
 
-Students should use this [rubric](https://review.udacity.com/#!/projects/2696458597/rubric) for self-checking their submission. Make sure the functions you write are **object-oriented** - either class functions (like Player and Enemy) or class prototype functions such as Enemy.prototype.checkCollisions, and that the keyword 'this' is used appropriately within your class and class prototype functions to refer to the object the function is called upon. Also be sure that the **readme.md** file is updated with your instructions on both how to 1. Run and 2. Play your arcade game.
+### Contents:
 
-For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
+- [Description](#description).
+- [Instructions](#instructions).
+- [License](#license).
+
+
+## Description:
+
+- A Udacity Front end development Nanodegree project taken as a Google Developer Scholarship.
+- A classic Arcade Game.
+- The goal of the game is to collect as much gems as player can while avoiding getting hit by bugs (enemies) and reach the sea.
+- Sound effects are added to the game in case of win, life lost, and through the whole game play.
+
+
+## Instructions:
+
+- Player can move in 4 directions using keyboard arrow buttons.
+- Player should avoid getting hit by bugs.
+- Player has 3 chances and after that the game is over. The player then is asked if he/she want to play again.
+- Player goal is to collect as much gems (earn score) as he/she can before reaching the sea (earn score).
+
+
+## License:
+
+- This project is licensed under the terms of the [MIT](https://choosealicense.com/licenses/mit/) license.
