@@ -9,6 +9,7 @@ let status = 1;
 const muteSrc = 'images/icons8-no-audio-40.png';
 const unmuteSrc = 'images/icons8-audio-40.png';
 var lives = 3;
+var gemNumber = 0;
 // Enemies our player must avoid
 const Enemy = function(x, y) {
     // Variables applied to each of our instances go here,
@@ -65,6 +66,7 @@ Player.prototype.update = function(dt) {
 // Draw the player on the screen, required method for game
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    console.log(this.x, this.y);
 };
 
 // Handle key input for player
@@ -137,11 +139,41 @@ Heart.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y, 60, 101);
 };
   
+//Gem class draw and manipulate gems
+var Gem = function(x, y) {
+    this.sprite = 'images/Gem Green.png';
+    this.x = x;
+    this.y = y;
+};
 
-const Gem = function(x, y) {
-    this.sprite = ''
+//interact with gem win
+Gem.prototype.update = function() {
+    gemWin();
+};
+
+//draw the gem
+Gem.prototype.render = function() {
+    gemWin();
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y, 60, 101);
+};
+
+function gemWin() {
+    if ((gem.x - player.x == 19) && (gem.y - player.y == 32 || gem.y - player.y == 41)) {
+        gem.x = -500;
+        gem.y = -500;
+        if (gemNumber < 15) {
+            gemNumber += 1;
+            gem.x = gemPositions[gemNumber].x;
+            gem.y = gemPositions[gemNumber].y;
+
+    }   else {
+            gemNumber = 0;
+    }
+    }
 }
 
+//array of gem positions. we will shuffle the array to randomly draw a gem in a new position after winning the previous one
+var gemPositions = [{x: 19, y: 271}, {x: 120, y:  271}, {x: 221, y:  271}, {x: 322, y:  271}, {x: 423, y: 271 }, {x: 19, y: 197  }, {x: 120, y: 197 }, {x: 221, y: 197 }, {x: 322, y: 197 }, {x: 423, y: 197 }, {x: 19, y:105  }, {x:120 , y: 105 }, {x: 221, y: 105 }, {x:322 , y: 105 }, {x:423 , y: 105 } ];
 
 
 // Now instantiate your objects.
@@ -163,7 +195,9 @@ const heart2 = new Heart(60, 510);
 const heart3 = new Heart(120, 510);
 
 const allHearts = [heart1, heart2, heart3];
-
+//invoke shuffle function to randomly change gem positions
+shuffle(gemPositions);
+var gem = new Gem(gemPositions[gemNumber].x, gemPositions[gemNumber].y);
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
 document.addEventListener('keyup', keyUpHandle);
@@ -280,6 +314,7 @@ function shuffle(array) {
     }
     return array;
 }
+
 
 
 
