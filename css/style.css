@@ -14,6 +14,7 @@ body {
     overflow: hidden;
     background: black;
     font-family: 'Atlantis the lost City';
+    box-sizing: border-box;
 }
 
 .contianer {
@@ -49,9 +50,12 @@ canvas {
     margin-top: -1em;
 }
 
+canvas:hover {
+    cursor: none;
+}
+
 .volumeControls {
     width: 100%;
-    text-align: center;
     margin: 50px 0;
 }
 
@@ -141,6 +145,11 @@ img:focus {
     top: 40%;
     font-size: 60px;
     visibility: hidden;
+    cursor: pointer;
+}
+
+.gameOverText:hover {
+    color: rgb(250, 235, 215);
 }
 
 .gameOverTextAnimate {
@@ -149,6 +158,23 @@ img:focus {
     animation-timing-function: ease-in-out;
     animation-fill-mode: forwards;
 }
+
+.controlAudioElement {
+    margin: 0 60px 0 40px;
+    float: left;
+}
+
+.score {
+    font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    border: 2px solid yellow;
+    width: 80px;
+    height: 40px;
+    float: left;
+}
+
+
 
 @keyframes drawer {
     100% {left: 0;}
@@ -166,3 +192,8 @@ img:focus {
     100% {visibility: visible;}
 }
 
+@keyframes timer-animation {
+    25% {background: green;}
+  50%{background: orange;}
+  100%{width: 150px; background: red;}
+}
