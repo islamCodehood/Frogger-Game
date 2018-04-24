@@ -6,11 +6,15 @@ const winAudio = document.getElementById('win-audio');
 const controlAudioElement = document.querySelector('.controlAudioElement');
 //determine the status of control Audio
 let status = 1;
+//src of mute icon
 const muteSrc = 'images/icons8-no-audio-40.png';
+//src of audio volume icon
 const unmuteSrc = 'images/icons8-audio-40.png';
+//counter number of lives of player
 let lives = 3;
+//represents the index of elements of the gemPositions array
 let gemNumber = 0;
-//variable holds score value
+//variable holds score value and used as a counter of score
 let score = 0;
 // Enemies our player must avoid
 const Enemy = function(x, y) {
@@ -34,11 +38,13 @@ Enemy.prototype.update = function(dt) {
     // which will ensure the game runs at the same speed for
     // all computers.
     this.x = this.x + this.speed * dt;
+    //handle collision function invocation
     handleCollision();
 };
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
+    //to return bugs again to the canvas after getting out
     if (this.x > 505) {
         this.x = -100;
     }
@@ -49,6 +55,7 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 const Player = function(x, y) {
+    //player sprite url
     this.sprite = 'images/char-boy.png';
     //x, and y coordinates for player
     this.x = x;
@@ -62,6 +69,7 @@ Player.prototype.update = function(dt) {
         this.x *= dt;
         this.y *= dt;
     };
+    //handle collision function invocation
     handleCollision();
 };
 
@@ -72,45 +80,61 @@ Player.prototype.render = function() {
 
 // Handle key input for player
 Player.prototype.handleInput = function(movement) {
+    //'this.x > 0' to prevent player from getting out of canvas
     if ((movement == 'left') && (this.x > 0)) {
         this.x -= 101;
+    //'this.x < 404' to prevent player from getting out of canvas
     } else if ((movement == 'right') && (this.x < 404)) {
         this.x += 101;
+    //'this.y > 0' to prevent player from getting out of canvas
     } else if ((movement == 'up') && ((this.y > 0))) {
-        this.y -= 83;
+        this.y -= 83;//this will result in this.y = -10
+        //means player reach the sea
         if (this.y == -10) {
             //pause game audio and play win audio
             audio.pause();
             winAudio.play();
             //increase score
             score += 5;
+            //represent it in the score box
             document.querySelector('.score').innerHTML = score;
-            //pause event listener to prevent any action before restart the game
+            //pause event listener to prevent any action before returning to the game
             document.removeEventListener('keyup', keyUpHandle);
+            //this time out give the chance for win audio not to overlap with the general game audio
             setTimeout(function() {
                 //return player to starting position
                 player.x = 202;
                 player.y = 405;
-                //replay game audio
+                //replay general game audio
                 audio.play();
-                //return event listener
+                //return event listener listenning
                 document.addEventListener('keyup', keyUpHandle);
             }, 3000);
         }
+    //'this.y < 405' to prevent player from getting out of canvas
     } else if ((movement == 'down') && ((this.y < 405))) {
         this.y += 83;
+    //escape button is a shortcut to mute or replay audio
     } else if (movement == 'escape') {
+        //status == 1 means that audio is working
         if (status == 1) {
+            //mute all game audio
             audio.volume = 0;
             winAudio.volume = 0;
             lifeLost.volume = 0;
+            //change mute icon to the volume icon
             controlAudioElement.src = unmuteSrc;
+            //change status to 0 to be able to revert the condition
             status = 0;
         } else {
+            //if status == 0 means that audio is muted
+            //increase volume  of audio
             audio.volume = 0.4;
             winAudio.volume = 1;
             lifeLost.volume = 1;
+            //change volume icon to mute icon
             controlAudioElement.src = muteSrc;
+            //change status to 1 to be able to revert the condition
             status = 1;
         }
     }
@@ -125,6 +149,7 @@ const Heart = function(x, y) {
 };
 //update method clear a heart with each decreased life
 Heart.prototype.update = function() {
+    //to remove a heart with each life lost
     if (lives == 3) {
         heart1.x = 0;
         heart2.x = 60;
@@ -144,7 +169,7 @@ Heart.prototype.render = function() {
 };
 
 //Gem class draw and manipulate gems
-var Gem = function(x, y) {
+const Gem = function(x, y) {
     this.sprite = 'images/Gem Green.png';
     this.x = x;
     this.y = y;
@@ -161,10 +186,12 @@ Gem.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y, 60, 101);
 };
 
+//handle earning gems
 function gemWin() {
+    //check if player win the gem
     if ((gem.x - player.x == 19) && (gem.y - player.y == 32 || gem.y - player.y == 41)) {
+        //remove the gem outside canvas
         gem.x = -500;
-        gem.y = -500;
         //increase score
         score += 5;
         document.querySelector('.score').innerHTML = score;
@@ -249,7 +276,7 @@ const heart3 = new Heart(120, 510);
 const allHearts = [heart1, heart2, heart3];
 //invoke shuffle function to randomly change gem positions
 shuffle(gemPositions);
-var gem = new Gem(gemPositions[gemNumber].x, gemPositions[gemNumber].y);
+const gem = new Gem(gemPositions[gemNumber].x, gemPositions[gemNumber].y);
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
 document.addEventListener('keyup', keyUpHandle);
