@@ -33,7 +33,7 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    this.x = this.x + this.speed *dt;
+    this.x = this.x + this.speed * dt;
     handleCollision();
 };
 
@@ -58,10 +58,10 @@ Player.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    if (dt > 0){
+    if (dt > 0) {
         this.x *= dt;
         this.y *= dt;
-    }; 
+    };
     handleCollision();
 };
 
@@ -87,7 +87,7 @@ Player.prototype.handleInput = function(movement) {
             document.querySelector('.score').innerHTML = score;
             //pause event listener to prevent any action before restart the game
             document.removeEventListener('keyup', keyUpHandle);
-            setTimeout(function(){
+            setTimeout(function() {
                 //return player to starting position
                 player.x = 202;
                 player.y = 405;
@@ -95,12 +95,12 @@ Player.prototype.handleInput = function(movement) {
                 audio.play();
                 //return event listener
                 document.addEventListener('keyup', keyUpHandle);
-            }, 3000);        
+            }, 3000);
         }
-    } else if ((movement == 'down') && ((this.y < 405))) { 
+    } else if ((movement == 'down') && ((this.y < 405))) {
         this.y += 83;
     } else if (movement == 'escape') {
-        if (status == 1){
+        if (status == 1) {
             audio.volume = 0;
             winAudio.volume = 0;
             lifeLost.volume = 0;
@@ -114,18 +114,18 @@ Player.prototype.handleInput = function(movement) {
             status = 1;
         }
     }
-    ctx.drawImage(Resources.get(this.sprite), this.x , this.y);
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
 
 //Heart class caculates lives available
-const Heart = function(x, y){
+const Heart = function(x, y) {
     this.sprite = 'images/Heart.png';
     this.x = x;
     this.y = y;
 };
 //update method clear a heart with each decreased life
 Heart.prototype.update = function() {
-    if (lives == 3){
+    if (lives == 3) {
         heart1.x = 0;
         heart2.x = 60;
         heart3.x = 120;
@@ -136,13 +136,13 @@ Heart.prototype.update = function() {
     } else if (lives == 0) {
         heart1.x = -500;
     }
-    
+
 };
 //render method to draw hearts
 Heart.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y, 60, 101);
 };
-  
+
 //Gem class draw and manipulate gems
 var Gem = function(x, y) {
     this.sprite = 'images/Gem Green.png';
@@ -173,14 +173,59 @@ function gemWin() {
             gem.x = gemPositions[gemNumber].x;
             gem.y = gemPositions[gemNumber].y;
 
-    }   else {
+        } else {
             gemNumber = 0;
-    }
+        }
     }
 }
 
 //array of gem positions. we will shuffle the array to randomly draw a gem in a new position after winning the previous one
-var gemPositions = [{x: 19, y: 271}, {x: 120, y:  271}, {x: 221, y:  271}, {x: 322, y:  271}, {x: 423, y: 271 }, {x: 19, y: 197  }, {x: 120, y: 197 }, {x: 221, y: 197 }, {x: 322, y: 197 }, {x: 423, y: 197 }, {x: 19, y:105  }, {x:120 , y: 105 }, {x: 221, y: 105 }, {x:322 , y: 105 }, {x:423 , y: 105 } ];
+var gemPositions = [{
+    x: 19,
+    y: 271
+}, {
+    x: 120,
+    y: 271
+}, {
+    x: 221,
+    y: 271
+}, {
+    x: 322,
+    y: 271
+}, {
+    x: 423,
+    y: 271
+}, {
+    x: 19,
+    y: 197
+}, {
+    x: 120,
+    y: 197
+}, {
+    x: 221,
+    y: 197
+}, {
+    x: 322,
+    y: 197
+}, {
+    x: 423,
+    y: 197
+}, {
+    x: 19,
+    y: 105
+}, {
+    x: 120,
+    y: 105
+}, {
+    x: 221,
+    y: 105
+}, {
+    x: 322,
+    y: 105
+}, {
+    x: 423,
+    y: 105
+}];
 
 
 // Now instantiate your objects.
@@ -216,45 +261,45 @@ function keyUpHandle(e) {
         39: 'right',
         40: 'down',
         27: 'escape'
-    };  
+    };
 
     player.handleInput(allowedKeys[e.keyCode]);
 }
 /*handleCollision function do the following:
-*check if the player and bug are on the same position.
-*If so 1. pause the game audio. 2. play lifeLost audio.
-*3. reset player position. 4. replay game audio after lifeLost audio finish.*/
+ *check if the player and bug are on the same position.
+ *If so 1. pause the game audio. 2. play lifeLost audio.
+ *3. reset player position. 4. replay game audio after lifeLost audio finish.*/
 
 function handleCollision() {
     allEnemies.forEach(function(enemy) {
 
-            if ((player.x - enemy.x < 70) && (player.x - enemy.x > - 15) && (player.y - enemy.y == 11)){
-                    //pause game audio and play life lost audio
-                    audio.pause();
-                    lives -= 1;
-                    if (lives == 0) {
-                        document.querySelector('.gameOver').classList.remove('gameOverAnimateBack');
-                        document.querySelector('.bugImage').classList.remove('bugImageHide');
-                        document.querySelector('.gameOver').classList.add('gameOverAnimate');
-                        document.querySelector('.bugImage').classList.add('bugImageAnimate');
-                        document.querySelector('.gameOverText').classList.add('gameOverTextAnimate');
-                    }
-                    lifeLost.play();
-                    //return player to starting position
-                    player.x = 202;
-                    player.y = 405; 
-                    //pause event listener to prevent any action before restart the game
-                    document.removeEventListener('keyup', keyUpHandle);
-                    
-                    setTimeout(function() {
-                        //replay game audio
-                        audio.play(); 
-                        //return event listener
-                        document.addEventListener('keyup', keyUpHandle);
-                    }, 2000);  
+        if ((player.x - enemy.x < 70) && (player.x - enemy.x > -15) && (player.y - enemy.y == 11)) {
+            //pause game audio and play life lost audio
+            audio.pause();
+            lives -= 1;
+            if (lives == 0) {
+                document.querySelector('.gameOver').classList.remove('gameOverAnimateBack');
+                document.querySelector('.bugImage').classList.remove('bugImageHide');
+                document.querySelector('.gameOver').classList.add('gameOverAnimate');
+                document.querySelector('.bugImage').classList.add('bugImageAnimate');
+                document.querySelector('.gameOverText').classList.add('gameOverTextAnimate');
             }
+            lifeLost.play();
+            //return player to starting position
+            player.x = 202;
+            player.y = 405;
+            //pause event listener to prevent any action before restart the game
+            document.removeEventListener('keyup', keyUpHandle);
 
-    });    
+            setTimeout(function() {
+                //replay game audio
+                audio.play();
+                //return event listener
+                document.addEventListener('keyup', keyUpHandle);
+            }, 2000);
+        }
+
+    });
 }
 
 
@@ -271,7 +316,7 @@ function controls(e) {
     } else if (e.target && e.target.matches('img.princess-girl')) {
         player.sprite = 'images/char-princess-girl.png';
     } else if (e.target && e.target.matches('img.controlAudioElement')) {
-        if (status == 1){
+        if (status == 1) {
             audio.volume = 0;
             winAudio.volume = 0;
             lifeLost.volume = 0;
@@ -283,14 +328,14 @@ function controls(e) {
             lifeLost.volume = 1;
             controlAudioElement.src = muteSrc;
             status = 1;
-        } 
+        }
     }
 }
 //Use keyboard tab to focus characters and enter or space buttons to choose one
 document.querySelector('.controls').addEventListener('keyup', focusAndChoose);
 
 function focusAndChoose(e) {
-    if (e.keyCode == 13 || e.keyCode == 32  ) {
+    if (e.keyCode == 13 || e.keyCode == 32) {
         player.sprite = document.activeElement.getAttribute('src');
     }
 }
@@ -320,16 +365,3 @@ function shuffle(array) {
     }
     return array;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
