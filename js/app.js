@@ -66,7 +66,6 @@ Player.prototype.update = function(dt) {
 // Draw the player on the screen, required method for game
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-    console.log(this.x, this.y);
 };
 
 // Handle key input for player
@@ -225,7 +224,6 @@ function handleCollision() {
                     //pause game audio and play life lost audio
                     audio.pause();
                     lives -= 1;
-                    console.log(lives);
                     if (lives == 0) {
                         document.querySelector('.gameOver').classList.remove('gameOverAnimateBack');
                         document.querySelector('.bugImage').classList.remove('bugImageHide');
@@ -243,8 +241,6 @@ function handleCollision() {
                     setTimeout(function() {
                         //replay game audio
                         audio.play(); 
-                        console.log(lives);
-                        console.log(lives)
                         //return event listener
                         document.addEventListener('keyup', keyUpHandle);
                     }, 2000);  
@@ -287,8 +283,6 @@ document.querySelector('.controls').addEventListener('keyup', focusAndChoose);
 
 function focusAndChoose(e) {
     if (e.keyCode == 13 || e.keyCode == 32  ) {
-        console.log(e.keyCode);
-        console.log(document.activeElement.src);
         player.sprite = document.activeElement.getAttribute('src');
     }
 }
