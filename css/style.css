@@ -2,12 +2,10 @@
     font-family: 'Atlantis the lost City';
     src: url('Atlantis the lost City.ttf');
 }
-
 html {
     margin: 0;
     padding: 0;
 }
-
 body {
     margin: 0;
     padding: 0;
@@ -16,15 +14,13 @@ body {
     font-family: 'Atlantis the lost City';
     box-sizing: border-box;
 }
-
 .contianer {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    width: 100%;    
+    width: 100%;
 }
-
 .controls {
     width: 20%;
     float: left;
@@ -33,8 +29,6 @@ body {
     justify-content: center;
     align-items: center;
 }
-
-
 .instructions {
     width: 30%;
     float: left;
@@ -43,54 +37,42 @@ body {
     justify-content: center;
     align-items: center;
 }
-
 canvas {
     float: left;
     width: 40%;
     margin-top: -1em;
 }
-
 canvas:hover {
     cursor: none;
 }
-
 .volumeControls {
     width: 100%;
     margin: 50px 0;
 }
-
-
-
 .showIcon {
     display: block;
 }
-
 .hideIcon {
     display: none;
 }
-
 h1 {
     color: #516CD4;
     margin: 200px 0 0 50px;
     font-size: 120px;
 }
-
 span {
     float: right;
 }
-
 p {
     color: #516CD4;
     font-size: 36px;
     margin: 80px 0 0;
     display: block;
 }
-
 img:focus {
     background: radial-gradient(rgb(0, 173, 204), rgb(0, 0, 0));
     outline: none;
 }
-
 .gameOver {
     width: 100vw;
     height: 100vh;
@@ -107,13 +89,11 @@ img:focus {
     animation-timing-function: ease-in-out;
     animation-fill-mode: both;
 }
-
 .gameOverHeading {
     position: absolute;
     top: 10%;
     left: 40%;
 }
-
 .gameOverAnimateBack {
     left: 0;
     animation: drawer-back;
@@ -121,14 +101,12 @@ img:focus {
     animation-timing-function: ease-in-out;
     animation-fill-mode: both;
 }
-
 .bugImage {
     margin: auto;
     transform: scale(1.8);
     position: absolute;
     left: 30%;
 }
-
 .bugImageAnimate {
     animation: bugMove;
     animation-delay: 1.8s;
@@ -136,11 +114,9 @@ img:focus {
     animation-timing-function: ease-in-out;
     animation-fill-mode: forwards;
 }
-
 .bugImageHide {
     display: none;
 }
-
 .gameOverText {
     position: absolute;
     left: 30%;
@@ -148,11 +124,9 @@ img:focus {
     font-size: 60px;
     cursor: pointer;
 }
-
 .gameOverText:hover {
     color: rgb(250, 235, 215);
 }
-
 .gameOverTextAnimate {
     animation: text;
     animation-delay: 2.7s;
@@ -160,12 +134,10 @@ img:focus {
     animation-fill-mode: forwards;
     visibility: hidden;
 }
-
 .controlAudioElement {
     margin: 0 60px 0 40px;
     float: left;
 }
-
 .score {
     font-size: 30px;
     font-family: Arial, Helvetica, sans-serif;
@@ -178,27 +150,35 @@ img:focus {
     text-align: center;
     padding-top: 10px;
 }
-
-
-
 @keyframes drawer {
-    100% {left: 0;}
+    100% {
+       left: 0;
+   }
 }
-
 @keyframes drawer-back {
-    100% {left: -100vw;}
+    100% {
+       left: -100vw;
+   }
 }
-
 @keyframes bugMove {
-    100% {left: 120%;}
+    100% {
+       left: 120%;
+   }
 }
-
 @keyframes text {
-    100% {visibility: visible;}
+    100% {
+       visibility: visible;
+   }
 }
-
 @keyframes timer-animation {
-    25% {background: green;}
-  50%{background: orange;}
-  100%{width: 150px; background: red;}
+    25% {
+       background: green;
+   }
+    50%{
+       background: orange;
+   }
+    100%{
+       width: 150px;
+        background: red;
+   }
 }
