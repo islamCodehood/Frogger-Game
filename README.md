@@ -23,6 +23,8 @@
 
 ## Instructions:
 
+- To use the game You should visit Game page: https://islam888.github.io/Frogger-Game/
+- You could also run it _locally_ (on your machine) by downloading a zip formate using this link https://github.com/Islam888/Frogger-Game/archive/master.zip. Then you will have to unzip it and open index.html from browser to start game.
 - Player can move in 4 directions using keyboard arrow buttons.
 - Player should avoid getting hit by bugs.
 - Player has 3 chances and after that the game is over. The player then is asked if he/she want to play again.
