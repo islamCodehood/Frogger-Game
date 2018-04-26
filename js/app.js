@@ -98,13 +98,15 @@ Player.prototype.handleInput = function(movement) {
             score += 5;
             //represent it in the score box
             document.querySelector('.score').innerHTML = score;
+            //reset gem number
+            gemNumber = 0;
             //pause event listener to prevent any action before returning to the game
             document.removeEventListener('keyup', keyUpHandle);
             //this time out give the chance for win audio not to overlap with the general game audio
             setTimeout(function() {
                 //return player to starting position
-                player.x = 202;
-                player.y = 405;
+                this.x = 202;
+                this.y = 405;
                 //replay general game audio
                 audio.play();
                 //return event listener listenning
@@ -387,6 +389,8 @@ function startNewGame() {
     document.querySelector('.gameOverText').classList.remove('gameOverTextAnimate');
     //reset lives number
     lives = 3;
+    //reset gem number
+    gemNumber = 0;
     //reset score
     score = 0;
     //represent the new score
