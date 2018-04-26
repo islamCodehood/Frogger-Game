@@ -197,8 +197,8 @@ function gemWin() {
         //represent new score
         document.querySelector('.score').innerHTML = score;
         //not to exceed number of objects (places) to move gems using the array gemPositions which is shuffled each page reload.
+        gemNumber += 1;
         if (gemNumber < 15) {
-            gemNumber += 1;
             gem.x = gemPositions[gemNumber].x;
             gem.y = gemPositions[gemNumber].y;
 
