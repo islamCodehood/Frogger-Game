@@ -98,7 +98,7 @@ img:focus {
     left: 0;
     animation: drawer-back;
     animation-duration: 2.5s;
-    animation-timing-function: ;
+    animation-timing-function: ease-in-out;
     animation-fill-mode: both;
 }
 .bugImage {
