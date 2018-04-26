@@ -105,8 +105,8 @@ Player.prototype.handleInput = function(movement) {
             //this time out give the chance for win audio not to overlap with the general game audio
             setTimeout(function() {
                 //return player to starting position
-                this.x = 202;
-                this.y = 405;
+                player.x = 202;
+                player.y = 405;
                 //replay general game audio
                 audio.play();
                 //return event listener listenning
