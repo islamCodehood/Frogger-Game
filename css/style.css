@@ -110,7 +110,7 @@ img:focus {
 .bugImageAnimate {
     animation: bugMove;
     animation-delay: 1.8s;
-    animation-duration: 5s;
+    animation-duration: 6s;
     animation-timing-function: ease;
     animation-fill-mode: forwards;
 }
@@ -129,7 +129,7 @@ img:focus {
 }
 .gameOverTextAnimate {
     animation: text;
-    animation-delay: 2.7s;
+    animation-delay: 2.3s;
     animation-timing-function: ease-in-out;
     animation-fill-mode: forwards;
     visibility: hidden;
