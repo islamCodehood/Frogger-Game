@@ -124,8 +124,8 @@ Player.prototype.handleInput = function(movement) {
             audio.volume = 0;
             winAudio.volume = 0;
             lifeLost.volume = 0;
-            //change mute icon to the volume icon
-            controlAudioElement.src = unmuteSrc;
+            //change volume icon to mute icon
+            controlAudioElement.src = muteSrc;
             //change status to 0 to be able to revert the condition
             status = 0;
         } else {
@@ -134,8 +134,8 @@ Player.prototype.handleInput = function(movement) {
             audio.volume = 0.4;
             winAudio.volume = 1;
             lifeLost.volume = 1;
-            //change volume icon to mute icon
-            controlAudioElement.src = muteSrc;
+            //change mute icon to volume icon
+            controlAudioElement.src = unmuteSrc;
             //change status to 1 to be able to revert the condition
             status = 1;
         }
@@ -358,13 +358,13 @@ function controls(e) {
             audio.volume = 0;
             winAudio.volume = 0;
             lifeLost.volume = 0;
-            controlAudioElement.src = unmuteSrc;
+            controlAudioElement.src = muteSrc;
             status = 0;
         } else {
             audio.volume = 0.4;
             winAudio.volume = 1;
             lifeLost.volume = 1;
-            controlAudioElement.src = muteSrc;
+            controlAudioElement.src = unmuteSrc;
             status = 1;
         }
     }
