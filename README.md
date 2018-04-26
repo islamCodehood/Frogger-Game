@@ -2,7 +2,7 @@
 
 ### Contents:
 
-- [Game Page.](#game-page).
+- [Game Page](#game-page).
 - [Description](#description).
 - [Instructions](#instructions).
 - [License](#license).
