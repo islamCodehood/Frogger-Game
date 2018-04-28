@@ -1,3 +1,14 @@
+//check for screen width
+setInterval(function() {
+    if (window.innerWidth < 1280) {
+        document.querySelector('.container').style.visibility = 'hidden';
+        document.querySelector('.loadFail').style.display = 'block';
+    } else {
+        document.querySelector('.container').style.visibility = 'visible';
+        document.querySelector('.loadFail').style.display = 'none';
+    }
+}, 0);
+
 //Get lifeLost audio element
 const lifeLost = document.getElementById('life-lost');
 //Get win audio element
