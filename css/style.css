@@ -13,6 +13,7 @@ body {
     background: black;
     font-family: 'Atlantis the lost City';
     box-sizing: border-box;
+    color: #516CD4;
 }
 .contianer {
     display: flex;
@@ -56,7 +57,6 @@ canvas:hover {
     display: none;
 }
 h1 {
-    color: #516CD4;
     margin: 200px 0 0 50px;
     font-size: 120px;
 }
@@ -64,7 +64,6 @@ span {
     float: right;
 }
 p {
-    color: #516CD4;
     font-size: 36px;
     margin: 80px 0 0;
     display: block;
